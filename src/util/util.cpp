@@ -41,6 +41,7 @@ namespace boost {
 #include <openssl/rand.h>
 #include <openssl/err.h>
 #include <stdarg.h>
+#include <inttypes.h>
 
 #ifdef WIN32
 #ifdef _MSC_VER
@@ -350,7 +351,7 @@ string FormatMoney(int64_t n, bool fPlus)
     int64_t n_abs = (n > 0 ? n : -n);
     int64_t quotient = n_abs/COIN;
     int64_t remainder = n_abs%COIN;
-    string str = strprintf("%d.%08d", quotient, remainder);
+    string str = strprintf("%" PRId64 ".%08" PRId64, quotient, remainder);
 
     // Right-trim excess zeros before the decimal point:
     int nTrim = 0;
