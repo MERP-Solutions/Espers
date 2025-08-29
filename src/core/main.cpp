@@ -1949,10 +1949,8 @@ bool static Reorganize(CTxDB& txdb, CBlockIndex* pindexNew)
         }
     } else {
         // Only accept blocks from a peer if we are a Demi-node or if peer is a Demi-node
-        if (!fDemiPeerRelay(GetRelayPeerAddr) && fDemiNodes) {
-            if (!fDemiSelf) {
-                return error("Reorganize() : Not toggled self as a Demi-node \n Only accepting single-block Peer relays if we are \n");
-            }
+        if (!fDemiPeerRelay(GetRelayPeerAddr) && fDemiNodes && !fDemiSelf) {
+            LogPrintf("Reorganize() : Peer not flagged as Demi-node, continuing with reorganize to follow majority chain\n");
         }
     }
 

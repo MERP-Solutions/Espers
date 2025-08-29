@@ -1103,7 +1103,8 @@ void BuildConfigFile()
     fprintf(ConfFile, "#89131 version\n");
     fprintf(ConfFile, "listen=1\n");
     fprintf(ConfFile, "server=1\n");
-    fprintf(ConfFile, "deminodes=1\n");
+    // Disable Demi-nodes by default so wallets follow the majority chain
+    fprintf(ConfFile, "deminodes=0\n");
     fprintf(ConfFile, "demimaxdepth=200\n");
     fprintf(ConfFile, "maxconnections=500\n");
     fprintf(ConfFile, "rpcuser=yourusername\n");
